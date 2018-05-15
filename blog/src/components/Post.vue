@@ -1,17 +1,26 @@
 <template>
   <div class="post">
-    <h1>{{post.title}}</h1>
-    <div v-html="previewText"></div>
+
+    <Header/>
+    <b-jumbotron>
+      <h1>{{post.title}}</h1>
+      <div v-html="previewText"></div>
+    </b-jumbotron>
   </div>
 </template>
 
 <script>
+
 import axios from 'axios'
+import Header from '@/components/Header.vue'
 
 let marked = require('marked')
 
 export default {
   name: 'Post',
+  components: {
+    Header
+  },
   mounted () {
     this.getPost(this.$route.params.id)
   },
@@ -72,5 +81,10 @@ a {
 }
 .published {
   font-size: 10px;
+}
+
+img {
+    max-width:100% !important;
+    height:auto !important;
 }
 </style>

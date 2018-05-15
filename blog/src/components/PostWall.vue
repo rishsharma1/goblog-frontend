@@ -1,20 +1,25 @@
 <template>
   <div class="post_wall">
+    <Header/>
     <h1>Posts</h1>
-    <ul>
-      <li v-for="post in posts" :key="post.titile">
-        <router-link :to="{name: 'Post', params: {id: post.id}}">{{post.title}}</router-link>
-        <h2 class="published"><b>Posted:</b> {{post.date}}</h2>
-      </li>
-    </ul>
+    <b-list-group>
+          <b-list-group-item v-for="post in posts" :key="post.titile">
+            <router-link :to="{name: 'Post', params: {id: post.id}}">{{post.title}}</router-link>
+            <h2 class="published"><b>Posted:</b> {{post.date}}</h2>
+          </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Header from '@/components/Header.vue'
 
 export default {
   name: 'PostWall',
+  components: {
+    Header
+  },
   mounted () {
     this.getPosts()
   },
@@ -65,5 +70,10 @@ a {
 }
 .published {
   font-size: 10px;
+}
+.post-row {
+    margin: auto;
+    width: 50%;
+    position: relative;
 }
 </style>
